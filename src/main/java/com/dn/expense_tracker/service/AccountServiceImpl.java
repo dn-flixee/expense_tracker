@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class AccountServiceImpl implements AccountService {
@@ -25,7 +26,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AccountDto> fetchAccountList() {
 
-        return null;
+        return accountRepository.findAll().stream().map(income -> accountConverter.entityToDto(income)).collect(Collectors.toList());
     }
 
     @Override

@@ -13,8 +13,11 @@ public interface IncomeSourceService {
     IncomeSourceDto fetchIncomeSourceById(Long incomeSourceId);
 
     IncomeSourceDto fetchIncomeSourceByName(String name);
+    
 
     void deleteIncomeSourceById(Long incomeSourceId);
 
     IncomeSourceDto updateIncomeSource(Long incomeSourceId, IncomeSource dtoToEntity);
+
+//    List<String> fetchIncomeSourceNames();
 }

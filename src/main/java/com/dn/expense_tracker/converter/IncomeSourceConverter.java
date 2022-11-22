@@ -1,7 +1,6 @@
 package com.dn.expense_tracker.converter;
 
 import com.dn.expense_tracker.dto.IncomeSourceDto;
-import com.dn.expense_tracker.entity.Income;
 import com.dn.expense_tracker.entity.IncomeSource;
 import org.springframework.stereotype.Component;
 
@@ -12,15 +11,15 @@ public class IncomeSourceConverter {
         IncomeSourceDto incomeSourceDto = new IncomeSourceDto();
         incomeSourceDto.setIncomeSourceId(incomeSource.getIncomeSourceId());
         incomeSourceDto.setName(incomeSource.getName());
-        incomeSourceDto.setGoal(incomeSource.getGoal());
+        incomeSourceDto.setGoal(String.valueOf(incomeSource.getGoal()));
         return incomeSourceDto;
     }
     public IncomeSource dtoToEntity(IncomeSourceDto incomeSourceDto){
 
         IncomeSource incomeSource = new IncomeSource();
         incomeSource.setIncomeSourceId(incomeSourceDto.getIncomeSourceId());
-        incomeSource.setName(incomeSource.getName());
-        incomeSource.setGoal(incomeSource.getGoal());
+        incomeSource.setName(incomeSourceDto.getName());
+        incomeSource.setGoal(Double.parseDouble(incomeSourceDto.getGoal()));
         return incomeSource;
     }
 }

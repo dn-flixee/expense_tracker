@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 public class IncomeController {
     @Autowired
     private IncomeService incomeService;
@@ -44,5 +46,10 @@ public class IncomeController {
     @PutMapping("/api/v1/income/{id}")
     public IncomeDto updateIncome(@PathVariable("id") Long incomeId,@RequestBody IncomeDto incomeDto){
         return incomeService.updateIncome(incomeId,incomeConverter.dtoToEntity(incomeDto));
+    }
+
+    @GetMapping("/api/v1/income/{id}/total")
+    public Double fetchIncomeTotalById(@PathVariable("id")Long incomeSourceID){
+        return incomeService.fetchIncomeTotalById(incomeSourceID);
     }
 }

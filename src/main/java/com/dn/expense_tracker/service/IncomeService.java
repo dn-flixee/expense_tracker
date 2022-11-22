@@ -17,4 +17,6 @@ public interface IncomeService {
     IncomeDto updateIncome(Long incomeId, Income dtoToEntity);
 
     IncomeDto fetchIncomeByName(String name);
+
+    double fetchIncomeTotalById(Long incomeSourceID);
 }

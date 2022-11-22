@@ -5,11 +5,13 @@ import com.dn.expense_tracker.dto.IncomeDto;
 import com.dn.expense_tracker.entity.Income;
 import com.dn.expense_tracker.repository.IncomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class IncomeServiceImpl implements IncomeService {
 
     @Autowired
@@ -62,6 +64,11 @@ public class IncomeServiceImpl implements IncomeService {
     @Override
     public IncomeDto fetchIncomeByName(String name) {
         return incomeConverter.entityToDto(incomeRepository.findByName(name));
+    }
+
+    @Override
+    public double fetchIncomeTotalById(Long incomeSourceID) {
+        return incomeRepository.fetchIncomeTotalById(incomeSourceID);
     }
 
 }

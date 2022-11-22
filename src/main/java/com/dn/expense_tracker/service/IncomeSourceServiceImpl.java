@@ -5,19 +5,25 @@ import com.dn.expense_tracker.converter.IncomeSourceConverter;
 import com.dn.expense_tracker.dto.AccountDto;
 import com.dn.expense_tracker.dto.IncomeSourceDto;
 import com.dn.expense_tracker.entity.Account;
+import com.dn.expense_tracker.entity.Income;
 import com.dn.expense_tracker.entity.IncomeSource;
 import com.dn.expense_tracker.repository.AccountRepository;
 import com.dn.expense_tracker.repository.IncomeSourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+@Service
 public class IncomeSourceServiceImpl implements IncomeSourceService {
     @Autowired
     private IncomeSourceRepository incomeSourceRepository;
     @Autowired
     private IncomeSourceConverter incomeSourceConverter;
+
     @Override
     public IncomeSourceDto saveIncomeSource(IncomeSource incomeSource) {
         return incomeSourceConverter.entityToDto(incomeSourceRepository.save(incomeSource));
@@ -25,8 +31,7 @@ public class IncomeSourceServiceImpl implements IncomeSourceService {
 
     @Override
     public List<IncomeSourceDto> fetchIncomeSourceList() {
-
-        return null;
+        return incomeSourceRepository.findAll().stream().map(incomeSource -> incomeSourceConverter.entityToDto(incomeSource)).collect(Collectors.toList());
     }
 
     @Override
@@ -54,6 +59,11 @@ public class IncomeSourceServiceImpl implements IncomeSourceService {
 
         return incomeSourceConverter.entityToDto(incomeSourceRepository.save(incomeSourceDB));
     }
+
+//    @Override
+//    public List<String> fetchIncomeSourceNames() {
+//        incomeSourceRepository.findAll();
+//    }
 
     @Override
     public IncomeSourceDto fetchIncomeSourceByName(String name) {

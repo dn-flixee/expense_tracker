@@ -10,7 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins = "http://localhost:3000")
+@RestController
 public class IncomeSourceController {
     @Autowired
     private IncomeSourceService incomeSourceService;
@@ -37,6 +38,10 @@ public class IncomeSourceController {
         return incomeSourceService.fetchIncomeSourceByName(name);
     }
 
+//    public  List<String > fetchIncomeSourceNames(){
+//        return incomeSourceService.fetchIncomeSourceNames();
+//    }
+
     @DeleteMapping("/api/v1/incomeSource/{id}")
     public String deleteIncomeSourceById(@PathVariable("id") Long incomeSourceId){
         incomeSourceService.deleteIncomeSourceById(incomeSourceId);
@@ -47,4 +52,6 @@ public class IncomeSourceController {
     public IncomeSourceDto updateIncomeSource(@PathVariable("id") Long incomeSourceId, @RequestBody IncomeSourceDto incomeSourceDto){
         return incomeSourceService.updateIncomeSource(incomeSourceId,incomeSourceConverter.dtoToEntity(incomeSourceDto));
     }
+
+
 }
