@@ -18,7 +18,7 @@ public class IncomeConverter {
         IncomeDto dto = new IncomeDto();
         dto.setIncomeId(income.getIncomeId());
         dto.setName(income.getName());
-        dto.setAmount(String.valueOf(income.getAmount()));
+        dto.setAmount(income.getAmount());
         dto.setDate(income.getDate());
         dto.setAccountName(income.getAccount().getName());
         dto.setIncomeSourceName(income.getIncomeSource().getName());
@@ -29,7 +29,7 @@ public class IncomeConverter {
         Income income = new Income();
         income.setIncomeId(dto.getIncomeId());
         income.setName(dto.getName());
-        income.setAmount(Double.parseDouble(dto.getAmount()));
+        income.setAmount(dto.getAmount());
         income.setDate(dto.getDate());
         income.setAccount(accountRepository.findByName(dto.getAccountName()));
         income.setIncomeSource(incomeSourceRepository.findByName(dto.getIncomeSourceName()));

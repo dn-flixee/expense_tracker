@@ -17,5 +17,5 @@ import java.io.Serializable;
 public class IncomeSourceDto implements Serializable {
     private Long incomeSourceId;
     private String name;
-    private String goal;
+    private Double goal;
 }

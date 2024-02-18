@@ -18,7 +18,7 @@ import java.util.Date;
 public class IncomeDto implements Serializable {
     private Long incomeId;
     private String name;
-    private String amount;
+    private Double amount;
     private Date date;
     private String accountName;
     private String incomeSourceName;

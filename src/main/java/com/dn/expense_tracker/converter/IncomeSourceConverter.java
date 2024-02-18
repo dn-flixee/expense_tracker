@@ -11,7 +11,7 @@ public class IncomeSourceConverter {
         IncomeSourceDto incomeSourceDto = new IncomeSourceDto();
         incomeSourceDto.setIncomeSourceId(incomeSource.getIncomeSourceId());
         incomeSourceDto.setName(incomeSource.getName());
-        incomeSourceDto.setGoal(String.valueOf(incomeSource.getGoal()));
+        incomeSourceDto.setGoal(incomeSource.getGoal());
         return incomeSourceDto;
     }
     public IncomeSource dtoToEntity(IncomeSourceDto incomeSourceDto){
@@ -19,7 +19,7 @@ public class IncomeSourceConverter {
         IncomeSource incomeSource = new IncomeSource();
         incomeSource.setIncomeSourceId(incomeSourceDto.getIncomeSourceId());
         incomeSource.setName(incomeSourceDto.getName());
-        incomeSource.setGoal(Double.parseDouble(incomeSourceDto.getGoal()));
+        incomeSource.setGoal(incomeSourceDto.getGoal());
         return incomeSource;
     }
 }

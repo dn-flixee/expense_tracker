@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@CrossOrigin(origins = {"http://localhost:3000","https://hoppscotch.io:443"})
+    @CrossOrigin(origins = {"http://localhost:3000","https://hoppscotch.io:443"})
 @RestController
 public class AccountController {
     @Autowired
