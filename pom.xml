@@ -14,7 +14,7 @@
 	<name>expense_tracker</name>
 	<description>expense tracker backend</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
