@@ -21,7 +21,7 @@ import javax.persistence.*;
 public class IncomeSource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long incomeSourceId;
     private String name;
     private Double goal;

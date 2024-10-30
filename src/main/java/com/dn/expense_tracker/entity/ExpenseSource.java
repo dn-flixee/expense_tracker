@@ -19,7 +19,7 @@ import javax.persistence.*;
 public class ExpenseSource {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long expenseSourceId;
     @Column(
             nullable = false

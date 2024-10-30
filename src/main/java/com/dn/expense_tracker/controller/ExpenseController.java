@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin("*")
 @RestController
@@ -39,6 +40,11 @@ public class ExpenseController {
     @GetMapping("/api/v1/expense/name/{name}")
     public ExpenseDto fetchExpenseByName(@PathVariable("name") String name){
         return expenseService.fetchExpenseByName(name);
+    }
+
+    @GetMapping("/api/v1/expense/last-year")
+    public Map<String, List<Map<String, Object>>> getExpensesForLastYear() {
+        return expenseService.getExpensesForLastYear();
     }
 
     @DeleteMapping("/api/v1/expense/{id}")

@@ -11,11 +11,13 @@ import java.util.Date;
 @ToString
 @Entity
 @Builder
+@Getter
+@Setter
 @Table(name = "expense")
 public class Expense {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long expenseId;
     private String name;
     private double amount;

@@ -14,7 +14,7 @@ import java.util.Date;
 public class Income {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long incomeId;
     private String name;
     private double amount;

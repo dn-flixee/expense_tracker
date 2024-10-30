@@ -8,8 +8,8 @@ import com.dn.expense_tracker.repository.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -66,5 +66,42 @@ public class ExpenseServiceImpl implements ExpenseService{
     @Override
     public ExpenseDto fetchExpenseByName(String name) {
         return expenseConverter.entityToDto(expenseRepository.findByName(name));
+    }
+
+    @Override
+    public Map<String, List<Map<String, Object>>> getExpensesForLastYear() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.YEAR, -1);
+        Date startDate = calendar.getTime();
+        Date endDate = new Date();
+
+        List<Expense> expenses = expenseRepository.findByDateBetween(startDate, endDate);
+
+        Map<String, Map<String, Double>> monthlyExpenses = new LinkedHashMap<>();
+
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MMMM");
+
+        for (Expense expense : expenses) {
+            String month = monthFormat.format(expense.getDate());
+            String sourceName = expense.getExpenseSource().getName();
+            double amount = expense.getAmount();
+
+            monthlyExpenses
+                    .computeIfAbsent(month, k -> new HashMap<>())
+                    .merge(sourceName, amount, Double::sum);
+        }
+
+        return monthlyExpenses.entrySet().stream()
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().entrySet().stream()
+                                .map(entry -> {
+                                    Map<String, Object> map = new HashMap<>();
+                                    map.put("name", entry.getKey());
+                                    map.put("value", entry.getValue());
+                                    return map;
+                                }).collect(Collectors.toList()),
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new
+                ));
     }
 }

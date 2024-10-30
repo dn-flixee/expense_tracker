@@ -14,7 +14,7 @@ import java.util.Date;
 public class Transfer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long transferId;
     private String name;
     private double amount;

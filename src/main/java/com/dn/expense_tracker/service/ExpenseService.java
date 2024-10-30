@@ -5,6 +5,7 @@ import com.dn.expense_tracker.dto.ExpenseDto;
 import com.dn.expense_tracker.entity.Expense;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ExpenseService {
     public ExpenseDto saveExpense(Expense expense);
@@ -18,4 +19,6 @@ public interface ExpenseService {
     ExpenseDto updateExpense(Long expenseId, Expense dtoToEntity);
 
     ExpenseDto fetchExpenseByName(String name);
+
+    public Map<String, List<Map<String, Object>>> getExpensesForLastYear();
 }
