@@ -33,9 +33,9 @@ public class ExpenseSourceController {
     }
 
     @DeleteMapping("/api/v1/expenseSource/{id}")
-    public String deleteExpenseSourceById(@PathVariable("id") Long expenseSourceId){
+    public Long deleteExpenseSourceById(@PathVariable("id") Long expenseSourceId){
         expenseSourceService.deleteExpenseSourceById(expenseSourceId);
-        return "ExpenseSource deleted Successfully";
+        return expenseSourceId;
     }
 
     @PutMapping("/api/v1/expenseSource/{id}")

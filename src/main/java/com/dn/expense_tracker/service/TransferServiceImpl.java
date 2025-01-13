@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Service
 public class TransferServiceImpl implements TransferService {
     @Autowired
@@ -23,7 +25,7 @@ public class TransferServiceImpl implements TransferService {
     @Override
     public List<TransferDto> fetchTransferList() {
 
-        return null;
+        return transferRepository.findAll().stream().map(transfer -> transferConverter.entityToDto(transfer)).collect(Collectors.toList());
     }
 
     @Override
